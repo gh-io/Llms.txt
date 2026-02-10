@@ -1,18 +1,14 @@
-<project title="FastHTML" summary='FastHTML is a python library which brings together Starlette, Uvicorn, HTMX, and fastcore&#39;s `FT` "FastTags" into a library for creating server-rendered hypermedia applications. The `FastHTML` class itself inherits from `Starlette`, and adds decorator-based routing with many additions, Beforeware, automatic `FT` to HTML rendering, and much more.'>Things to remember when writing FastHTML apps:
+# <project title="FastHTML" summary='FastHTML is a python library which brings together Starlette, Uvicorn, HTMX, and fastcore&#39;s `FT` "FastTags" into a library for creating server-rendered hypermedia applications. The `FastHTML` class itself inherits from `Starlette`, and adds decorator-based routing with many additions, Beforeware, automatic `FT` to HTML rendering, and much more.'>Things to remember when writing FastHTML apps:
 
 - Although parts of its API are inspired by FastAPI, it is *not* compatible with FastAPI syntax and is not targeted at creating API services
 - FastHTML includes support for Pico CSS and the fastlite sqlite library, although using both are optional; sqlalchemy can be used directly or via the fastsql library, and any CSS framework can be used. Support for the Surreal and css-scope-inline libraries are also included, but both are optional
 - FastHTML is compatible with JS-native web components and any vanilla JS library, but not with React, Vue, or Svelte
 - Use `serve()` for running uvicorn (`if __name__ == "__main__"` is not needed since it's automatic)
 - When a title is needed with a response, use `Titled`; note that that already wraps children in `Container`, and already includes both the meta title as well as the H1 element.<docs><doc title="FastHTML concise guide" desc="A brief overview of idiomatic FastHTML apps"># Concise reference
-
-
-
+  
 ## About FastHTML
 
-``` python
 from fasthtml.common import *
-```
 
 FastHTML is a python library which brings together Starlette, Uvicorn,
 HTMX, and fastcore’s `FT` “FastTags” into a library for creating
@@ -50,7 +46,6 @@ few if any comments, but they’re added here as documentation.)
 
 A minimal FastHTML app looks something like this:
 
-``` python
 # Meta-package with all key symbols from FastHTML and Starlette. Import it like this at the start of every FastHTML app.
 from fasthtml.common import *
 # The FastHTML app object and shortcut to `app.route`
@@ -785,7 +780,8 @@ def SemanticText():
             P("Write semantic HTML in pure Python, get modern styling for free."),
             Cite("MonsterUI Team")),
         footer=Small("Released February 2025"),)
-```</doc><doc title="HTMX reference" desc="Brief description of all HTMX attributes, CSS classes, headers, events, extensions, js lib methods, and config options">+++
+```
+</doc><doc title="HTMX reference" desc="Brief description of all HTMX attributes, CSS classes, headers, events, extensions, js lib methods, and config options">+++
 title = "Reference"
 +++
 
@@ -978,7 +974,7 @@ All other attributes available in htmx.
 | [`htmx.config`](@/api.md#config)  | A property that holds the current htmx config object
 | [`htmx.createEventSource`](@/api.md#createEventSource)  | A property holding the function to create SSE EventSource objects for htmx
 | [`htmx.createWebSocket`](@/api.md#createWebSocket)  | A property holding the function to create WebSocket objects for htmx
-| [`htmx.defineExtension()`](@/api.md#defineExtension)  | Defines an htmx [extension](https://htmx.org/extensions)
+| [`htmx.defineExtension()`](@/api.md#defineExtension)  | Defines an htmx `[extension](https://htmx.org/extensions)`
 | [`htmx.find()`](@/api.md#find)  | Finds a single element matching the selector
 | [`htmx.findAll()` `htmx.findAll(elt, selector)`](@/api.md#find)  | Finds all elements matching a given selector
 | [`htmx.logAll()`](@/api.md#logAll)  | Installs a logger that will log all htmx events
@@ -990,7 +986,7 @@ All other attributes available in htmx.
 | [`htmx.process()`](@/api.md#process)  | Processes the given element and its children, hooking up any htmx behavior
 | [`htmx.remove()`](@/api.md#remove)  | Removes the given element
 | [`htmx.removeClass()`](@/api.md#removeClass)  | Removes a class from the given element
-| [`htmx.removeExtension()`](@/api.md#removeExtension)  | Removes an htmx [extension](https://htmx.org/extensions)
+| [`htmx.removeExtension()`](@/api.md#removeExtension)  | Removes an htmx `[extension](https://htmx.org/extensions)`
 | [`htmx.swap()`](@/api.md#swap)  | Performs swapping (and settling) of HTML content
 | [`htmx.takeClass()`](@/api.md#takeClass)  | Takes a class from other elements for the given element
 | [`htmx.toggleClass()`](@/api.md#toggleClass)  | Toggles a class from the given element
@@ -1050,7 +1046,7 @@ listed below:
 
 You can set them directly in javascript, or you can use a `meta` tag:
 
-```html
+
 <meta name="htmx-config" content='{"defaultSwapStyle":"outerHTML"}'>
 ```</doc><doc title="Starlette quick guide" desc="A quick overview of some Starlette features useful to FastHTML devs."># 🌟 Starlette Quick Manual
 
@@ -1115,7 +1111,7 @@ async handler(request):
     #   307: temporary redirect (default)
     return RedirectResponse(url=url, status_code=303)
 
-```
+
 
 ## Request context
 
@@ -1133,7 +1129,7 @@ async handler(request):
 ### Headers: `request.headers`
 
 ```
-{
+`{
     'host': 'example.com:8080', 
     'connection': 'keep-alive', 
     'cache-control': 'max-age=0', 
@@ -1150,7 +1146,7 @@ async handler(request):
     'accept-encoding': 'gzip, deflate, br', 
     'accept-language': 'en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7,zh-TW;q=0.6', 
     'cookie': 'session=eyJhZG1pbl91c2_KiQ...'
-}
+}`
 
 ```
 
@@ -1172,7 +1168,7 @@ async handler(request):
 ### Scope: `request.scope`
 
 ```
-{
+`{
     'type': 'http', 
     'http_version': '1.1', 
     'server': ('127.0.0.1', 9092), 
@@ -1194,25 +1190,18 @@ async handler(request):
     'router': <starlette.routing.Router object at 0x1081bd6d0>, 
     'endpoint': <class 'app.index.Index'>, 
     'path_params': {}
-}
-
+}`
 ```
-
 ## Put varaible in request & app scope
 
-```
 app.state.dbconn = get_db_conn()
 request.state.start_time = time.time()
 # use app-scope state variable in a request
 request.app.state.dbconn
 
-```
-
 ## Utility functions
 
 ### Use `State` to wrap a dictionary
-
-```
 from starlette.datastructures import State
 
 data = {
@@ -1223,14 +1212,12 @@ print(data["name"])
 wrapped = State(data)
 # You can use the dot syntaxt, but can't use `wrapped["name"]` any more.
 print(wrapped.name)
-
-```
+`
 
 ### login_required wrapper function
 
 NB: This is easier to do in FastHTML using Beforeware.
-
-```
+`
 import functools
 from starlette.endpoints import HTTPEndpoint
 from starlette.responses import Response
@@ -1330,19 +1317,14 @@ async def handler(request):
     content = ""
     return Response(content, background=tasks)
 
-```
-
 ## Write middleware
 
 There are 2 ways to write middleware:
-
+`
 ### Define `__call__` function:
-
-```
 class MyMiddleware:
     def __init__(self, app):
         self.app = app
-
     async def __call__(self, scope, receive, send):
         # see above scope dictionary as reference
         headers = dict(scope["headers"])
@@ -1365,7 +1347,8 @@ class CustomHeaderMiddleware(BaseHTTPMiddleware):
         response.headers['X-Author'] = 'John'
         return response
 
-```</doc></docs><api><doc title="API List" desc="A succint list of all functions and methods in fasthtml."># fasthtml Module Documentation
+```
+</doc></docs><api><doc title="API List" desc="A succint list of all functions and methods in fasthtml."># fasthtml Module Documentation
 
 ## fasthtml.authmw
 
@@ -1873,7 +1856,8 @@ class CustomHeaderMiddleware(BaseHTTPMiddleware):
 
 - `def Favicon(light_icon, dark_icon)`
     Light and dark favicon headers
-</doc><doc title="MonsterUI API List" desc="Complete API Reference for Monster UI, a component framework similar to shadcn, but for FastHTML"># monsterui Module Documentation
+
+`</doc><doc title="MonsterUI API List" desc="Complete API Reference for Monster UI, a component framework similar to shadcn, but for FastHTML"># monsterui Module Documentation
 
 ## monsterui.core
 
@@ -2386,8 +2370,10 @@ class CustomHeaderMiddleware(BaseHTTPMiddleware):
     Anchor tag with appropriate structure to go inside a `LightBoxContainer`
 
 - `def ApexChart(**kws)`
-    Apex chart component
-</doc></api><examples><doc title="Websockets application" desc="Very brief example of using websockets with HTMX and FastHTML">from asyncio import sleep
+
+```
+Apex chart component
+  </doc></api><examples><doc title="Websockets application" desc="Very brief example of using websockets with HTMX and FastHTML">from asyncio import sleep
 from fasthtml.common import *
 
 app = FastHTML(exts='ws')
@@ -2446,8 +2432,9 @@ def before(req, sess):
 
 # Beforeware objects require the function itself, and optionally a list of regexes to skip.
 bware = Beforeware(before, skip=[r'/favicon\.ico', r'/static/.*', r'.*\.css', '/login', '/send_login'])
+```
 
-markdown_js = """
+```markdown_js = """
 import { marked } from "https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js";
 proc_htmx('.markdown', e => e.innerHTML = marked.parse(e.textContent));
 """
@@ -2609,3 +2596,4 @@ def index(auth):
 
 # You do not need `if __name__ == '__main__':` in FastHTML apps, because `serve()` handles this automatically. By default it reloads the app when the source code changes.
 serve()</doc></examples></project>
+```
